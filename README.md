@@ -8,13 +8,11 @@
 
 ## Project Overview
 
-This repository contains the complete design, Cisco Packet Tracer implementation, configuration records, testing evidence, and technical documentation for the Molema Citrus Estates network project.
-
-The project is organised into two phases. **Phase 1** contains the network requirements, design, topology and addressing plan. **Phase 2** contains the implemented Packet Tracer network, configuration evidence, testing screenshots and final Milestone 2 report.
+This repository contains the network design, Cisco Packet Tracer implementation, verified device configuration records, testing evidence, and Milestone 2 technical report for the Molema Citrus Estates project.
 
 ## Phase 1 — Network Design ✅
 
-Phase 1 provides the approved baseline used for implementation, including client requirements, physical and logical topology design, VLAN/VLSM addressing and design justification.
+The Phase 1 material is retained at the repository root and includes the client requirements, Phase 1 design document, IP addressing plan, physical topology material, logical topology/VLAN design, and design justification.
 
 ## Phase 2 — Implementation & Testing ✅
 
@@ -26,7 +24,7 @@ The implemented network includes:
 - VLAN 30 — Packhouse — gateway `192.168.26.1/27`
 - VLAN 40 — Voice — gateway `192.168.26.65/27`
 - VLAN 50 — Guest — gateway `192.168.26.97/28`
-- 802.1Q trunking between the core and access switches
+- 802.1Q trunking
 - IOS DHCP pools for Administration, Packhouse, Voice and Guest networks
 - Router-to-core Layer 3 connectivity
 - Extended ACL isolation for Guest VLAN 50 and Voice VLAN 40
@@ -41,57 +39,41 @@ The assigned networking feature was implemented using extended access control li
 ## Repository Navigation
 
 ```text
-Phase1/                         Phase 1 design and planning deliverables
-Phase2/
-├── README.md                   Phase 2 implementation overview
-├── CMPG325_Milestone2_Molema_Citrus_Estates_FINAL.pdf
-│                               Final Milestone 2 implementation report
-├── PacketTracer/
-│   └── Molema_Citrus_Phase2.pkt
-│                               Final working Cisco Packet Tracer file
-├── Configs/
-│   └── CoreSwitch_Config.txt   Verified core multilayer-switch configuration
-└── Screenshots/                Implementation, verification and testing evidence
+Repository root
+├── Client_Requirements.md
+├── Phase1_Design_Document.pdf
+├── IP_Addressing_Plan.xlsx
+├── Phase 1 topology/design files
+└── Phase2/
+    ├── README.md
+    ├── CMPG325_Milestone2_Molema_Citrus_Estates_FINAL.pdf
+    ├── PacketTracer/
+    │   └── Molema_Citrus_Phase2.pkt
+    ├── Configs/
+    │   ├── CoreSwitch_Config.txt
+    │   ├── Router0_Config.txt
+    │   ├── AdminSwitch_Config.txt
+    │   └── PackhouseSwitch_Config.txt
+    └── Screenshots/
+        └── Implementation and testing evidence
 ```
 
 ## Testing Evidence
 
-The Phase 2 evidence set documents:
+The Phase 2 evidence set documents VLAN/SVI status, trunk operation, DHCP address assignment, gateway and router connectivity, Administration-to-Packhouse connectivity, Guest VLAN isolation, Voice VLAN isolation, and ACL match-counter verification.
 
-- Complete Packet Tracer topology
-- VLAN SVI status verification
-- 802.1Q trunk verification
-- DHCP address assignment
-- Gateway connectivity
-- Router-to-core connectivity
-- Administration-to-Packhouse connectivity
-- Guest VLAN internal isolation
-- Voice VLAN isolation
-- ACL match-counter verification
+Both successful connectivity and intentionally blocked traffic are retained because a failed ping is the expected result when an ACL correctly blocks prohibited traffic.
 
-Both successful connectivity and intentionally blocked traffic are retained as evidence that the implemented network and ACL security policies operate as designed.
+## Key Submission Files
 
-## Packet Tracer Submission
+- **Packet Tracer:** `Phase2/PacketTracer/Molema_Citrus_Phase2.pkt`
+- **Final report:** `Phase2/CMPG325_Milestone2_Molema_Citrus_Estates_FINAL.pdf`
+- **Device configurations:** `Phase2/Configs/`
+- **Testing evidence:** `Phase2/Screenshots/`
 
-The final Cisco Packet Tracer implementation is available at:
+## Scope Note
 
-`Phase2/PacketTracer/Molema_Citrus_Phase2.pkt`
-
-## Configuration Evidence
-
-The verified core multilayer-switch configuration is available at:
-
-`Phase2/Configs/CoreSwitch_Config.txt`
-
-This configuration documents the principal Layer 3 implementation, including VLAN interfaces, routing-related configuration, DHCP services and ACL policy configuration used in the final network.
-
-## Milestone 2 Report
-
-The final implementation and testing report is available at:
-
-`Phase2/CMPG325_Milestone2_Molema_Citrus_Estates_FINAL.pdf`
-
-The report documents the implemented topology, VLAN/IP configuration, DHCP, routing and trunking, ACL implementation, testing results and troubleshooting performed during Phase 2.
+The implemented Packet Tracer topology verifies the internal network and the Router0 edge connection. No simulated ISP/Cloud path is included in the submitted topology, so public Internet reachability is not presented as a successful test. Internal routing, segmentation, DHCP and ACL behaviour are documented and verified separately.
 
 ---
 
