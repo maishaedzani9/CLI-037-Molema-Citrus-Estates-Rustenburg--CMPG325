@@ -1,0 +1,103 @@
+! Molema Citrus Estates — CoreSwitch
+! Configuration reconstructed only from verified running-config output captured during Phase 2.
+
+hostname CoreSwitch
+
+ip dhcp excluded-address 192.168.26.1 192.168.26.4
+ip dhcp excluded-address 192.168.26.33 192.168.26.39
+ip dhcp excluded-address 192.168.26.65 192.168.26.69
+ip dhcp excluded-address 192.168.26.97 192.168.26.99
+
+ip dhcp pool ADMIN_POOL
+ network 192.168.26.32 255.255.255.224
+ default-router 192.168.26.33
+ dns-server 8.8.8.8
+
+ip dhcp pool PACKHOUSE_POOL
+ network 192.168.26.0 255.255.255.224
+ default-router 192.168.26.1
+ dns-server 8.8.8.8
+
+ip dhcp pool VOICE_POOL
+ network 192.168.26.64 255.255.255.224
+ default-router 192.168.26.65
+ option 150 ip 192.168.26.65
+ dns-server 8.8.8.8
+
+ip dhcp pool GUEST_POOL
+ network 192.168.26.96 255.255.255.240
+ default-router 192.168.26.97
+ dns-server 8.8.8.8
+
+ip routing
+
+interface FastEthernet0/1
+ switchport trunk allowed vlan 30,40
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+
+interface FastEthernet0/5
+ switchport access vlan 50
+ switchport mode access
+
+interface FastEthernet0/6
+ switchport access vlan 50
+ switchport mode access
+
+interface FastEthernet0/7
+ switchport access vlan 50
+ switchport mode access
+
+interface GigabitEthernet0/1
+ no switchport
+ ip address 192.168.26.122 255.255.255.252
+ duplex auto
+ speed auto
+
+interface GigabitEthernet0/2
+ switchport trunk allowed vlan 10,20,40
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+
+interface Vlan1
+ no ip address
+ shutdown
+
+interface Vlan10
+ ip address 192.168.26.113 255.255.255.248
+
+interface Vlan20
+ ip address 192.168.26.33 255.255.255.224
+
+interface Vlan30
+ ip address 192.168.26.1 255.255.255.224
+
+interface Vlan40
+ ip address 192.168.26.65 255.255.255.224
+ ip access-group VOICE_ISOLATION in
+
+interface Vlan50
+ ip address 192.168.26.97 255.255.255.240
+ ip access-group GUEST_ISOLATION in
+
+ip route 0.0.0.0 0.0.0.0 192.168.26.121
+
+ip access-list extended GUEST_ISOLATION
+ permit udp any eq bootpc any eq bootps
+ permit udp any eq bootps any eq bootpc
+ deny ip 192.168.26.96 0.0.0.15 192.168.26.0 0.0.0.31
+ deny ip 192.168.26.96 0.0.0.15 192.168.26.32 0.0.0.31
+ deny ip 192.168.26.96 0.0.0.15 192.168.26.64 0.0.0.31
+ deny ip 192.168.26.96 0.0.0.15 192.168.26.112 0.0.0.15
+ permit ip 192.168.26.96 0.0.0.15 any
+
+ip access-list extended VOICE_ISOLATION
+ permit udp any eq bootpc any eq bootps
+ permit udp any eq bootps any eq bootpc
+ deny ip 192.168.26.64 0.0.0.31 192.168.26.0 0.0.0.31
+ deny ip 192.168.26.64 0.0.0.31 192.168.26.32 0.0.0.31
+ deny ip 192.168.26.64 0.0.0.31 192.168.26.112 0.0.0.15
+ deny ip 192.168.26.64 0.0.0.31 192.168.26.96 0.0.0.15
+ permit ip 192.168.26.64 0.0.0.31 any
+
+! End of verified configuration record
