@@ -2,7 +2,7 @@
 
 Project ID: CMPG325-2026-037 | Client ID: CLI-037 | Industry: Agriculture
 
-Full analysis is in `Phase1_Design_Document.docx`, Sections 2–5. Summary below.
+Full analysis is in `Phase1_Design_Document.pdf`, Sections 2–5. Summary below.
 
 ## Confirmed requirements (from the client brief)
 
@@ -15,10 +15,8 @@ Full analysis is in `Phase1_Design_Document.docx`, Sections 2–5. Summary below
 
 ## Reasonable design assumptions
 
-- Estate operations split into Administration/Office and Packhouse/Operations functions, plus a
-  small IT/management function.
-- Approximate host counts (used only to size subnets): Administration ≈ 20, Packhouse/Operations ≈
-  30, VoIP handsets ≈ 15, Guest/contractor Wi-Fi ≈ 10 concurrent, Management ≈ 5.
+- Estate operations split into Administration/Office and Packhouse/Operations functions, plus a small IT/management function.
+- Approximate host counts (used only to size subnets): Administration ≈ 20, Packhouse/Operations ≈ 30, VoIP handsets ≈ 15, Guest/contractor Wi-Fi ≈ 10 concurrent, Management ≈ 5.
 - Single physical site, single ISP connection.
 - Guest/contractor wireless should be Internet-only, isolated from all internal VLANs.
 
@@ -29,5 +27,4 @@ Full analysis is in `Phase1_Design_Document.docx`, Sections 2–5. Summary below
 - Whether any redundancy or dynamic routing is expected beyond what the brief states.
 - Exact ACL rule set beyond "traffic filtering policy" (to be finalised before Phase 2).
 
-See the full design document for the functional/non-functional requirements tables, constraints,
-and design-objective mapping.
+See the full design document for the functional/non-functional requirements tables, constraints, and design-objective mapping.
