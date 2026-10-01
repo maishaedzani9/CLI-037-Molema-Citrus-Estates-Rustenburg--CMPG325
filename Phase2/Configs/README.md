@@ -1,11 +1,12 @@
 # Device Configuration Records
 
-This folder documents the Phase 2 Cisco IOS configurations used in the implemented Packet Tracer network.
+This folder contains the verified Phase 2 Cisco IOS configuration records captured from the implemented Packet Tracer network.
 
-Planned configuration records:
-- `CoreSwitch_Config.txt`
-- `Router0_Config.txt`
-- `AdminSwitch_Config.txt`
-- `PackhouseSwitch_Config.txt`
+## Configuration Files
 
-The configuration records support verification and make the implementation easier to review without replacing the working `.pkt` file.
+- `CoreSwitch_Config.txt` — Layer 3 SVIs, DHCP pools, routed uplink, default route, trunks and Guest/Voice ACLs
+- `Router0_Config.txt` — edge-router interface and static routes back to the internal VLAN networks
+- `AdminSwitch_Config.txt` — Administration access ports, Voice VLAN assignment and uplink configuration
+- `PackhouseSwitch_Config.txt` — Packhouse access/Voice VLAN configuration captured from the final implementation
+
+These records provide readable configuration evidence alongside the working `Molema_Citrus_Phase2.pkt` file.
