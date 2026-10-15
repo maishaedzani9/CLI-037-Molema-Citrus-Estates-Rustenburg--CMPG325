@@ -88,7 +88,7 @@ ip access-list extended GUEST_ISOLATION
  deny ip 192.168.26.96 0.0.0.15 192.168.26.0 0.0.0.31
  deny ip 192.168.26.96 0.0.0.15 192.168.26.32 0.0.0.31
  deny ip 192.168.26.96 0.0.0.15 192.168.26.64 0.0.0.31
- deny ip 192.168.26.96 0.0.0.15 192.168.26.112 0.0.0.15
+ deny ip 192.168.26.96 0.0.0.15 192.168.26.112 0.0.0.7
  permit ip 192.168.26.96 0.0.0.15 any
 
 ip access-list extended VOICE_ISOLATION
