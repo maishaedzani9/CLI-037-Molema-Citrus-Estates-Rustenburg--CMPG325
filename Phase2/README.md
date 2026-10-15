@@ -1,29 +1,61 @@
 # Phase 2 — Implementation & Testing
 
-This folder contains the completed Milestone 2 implementation and evidence for the Molema Citrus Estates network project.
+This directory contains the Milestone 2 Cisco Packet Tracer implementation, configuration records, final report and evidence for the Molema Citrus Estates network project.
 
-## Implementation Scope
+## Implementation scope
 
-- Cisco Packet Tracer network implementation
-- VLANs and Layer 3 SVIs
+- VLANs and Layer 3 switched virtual interfaces (SVIs)
 - 802.1Q trunking
-- DHCP services for Administration, Packhouse, Voice and Guest networks
-- Inter-VLAN routing
-- Router-to-core Layer 3 connectivity
-- Assigned feature: extended ACL traffic isolation for Guest VLAN 50 and Voice VLAN 40
-- Connectivity, isolation and troubleshooting verification
+- DHCP for Administration, Packhouse, Voice and Guest VLANs
+- Inter-VLAN routing on the multilayer core switch
+- Layer 3 connectivity between the core switch and Router0
+- Extended ACL isolation for Guest VLAN 50 and Voice VLAN 40
+- Connectivity, DHCP, trunk, SVI and ACL verification
 
-## Contents
+## Deliverables
 
-- `CMPG325_Milestone2_Molema_Citrus_Estates_FINAL.pdf` — final Milestone 2 implementation and testing report
-- `PacketTracer/Molema_Citrus_Phase2.pkt` — final working Packet Tracer implementation
-- `Configs/` — verified configuration records for CoreSwitch, Router0, AdminSwitch and PackhouseSwitch
-- `Screenshots/` — implementation and testing evidence
+| Item | File or folder |
+|---|---|
+| Final Milestone 2 report | [CMPG325_Milestone2_Molema_Citrus_Estates_FINAL.pdf](CMPG325_Milestone2_Molema_Citrus_Estates_FINAL.pdf) |
+| Working Packet Tracer project | [PacketTracer/Molema_Citrus_Phase2.pkt](PacketTracer/Molema_Citrus_Phase2.pkt) |
+| Core switch, router and access-switch records | [Configs/](Configs/) |
+| Implementation and testing screenshots | [Screenshots/](Screenshots/) |
 
-## Evidence Summary
+## VLAN gateway summary
 
-The evidence set includes DHCP verification, VLAN/SVI verification, trunk verification, router connectivity, Guest VLAN isolation, Voice VLAN isolation and ACL match-counter verification. Intentionally failed pings are retained where blocking is the expected ACL result.
+| VLAN | Purpose | Network | Gateway |
+|---:|---|---|---|
+| 10 | Management | 192.168.26.112/29 | 192.168.26.113 |
+| 20 | Administration | 192.168.26.32/27 | 192.168.26.33 |
+| 30 | Packhouse | 192.168.26.0/27 | 192.168.26.1 |
+| 40 | Voice | 192.168.26.64/27 | 192.168.26.65 |
+| 50 | Guest | 192.168.26.96/28 | 192.168.26.97 |
 
-## Scope Note
+## Test evidence
 
-The submitted Packet Tracer topology does not include a simulated ISP/Cloud path. Public Internet reachability is therefore not claimed as a successful test; the documented evidence focuses on the implemented internal network, edge-router connectivity, segmentation and ACL behaviour.
+The screenshots document:
+
+- VLAN/SVI and 802.1Q trunk status
+- DHCP address assignment for the documented client VLANs
+- Gateway and router connectivity
+- Administration-to-Packhouse connectivity
+- Guest VLAN 50 isolation from protected internal networks
+- Voice VLAN 40 isolation from protected internal networks
+- ACL match-counter verification
+
+Both successful and intentionally blocked traffic tests are retained. A failed ping is a passing outcome when the corresponding ACL is intended to deny that traffic.
+
+## Reproduce the tests
+
+1. Open the `.pkt` file in Cisco Packet Tracer.
+2. Check the device configurations against the records in `Configs/`.
+3. Verify VLAN/SVI status and trunk operation.
+4. Renew or inspect DHCP leases on clients in the configured VLANs.
+5. Run the allowed connectivity tests and the Guest/Voice isolation tests.
+6. Compare the observed results with the screenshots and final report.
+
+## Scope and limitations
+
+The submitted topology does not include a simulated ISP/Cloud path. Public Internet reachability is therefore not claimed as a successful test. The documented verification focuses on the implemented internal network, core-to-router connectivity, segmentation, DHCP and ACL behaviour.
+
+The Packet Tracer project, configuration records, screenshots and report should be reviewed together. If a configuration record differs from the active running configuration, verify the live project and update the record from the verified output before treating it as final.
