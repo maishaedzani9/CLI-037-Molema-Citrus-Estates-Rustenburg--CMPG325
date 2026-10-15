@@ -1,81 +1,79 @@
 # CMPG 325 — Molema Citrus Estates (Rustenburg)
 
-**Client ID:** CLI-037  
-**Project ID:** CMPG325-2026-037  
-**Module:** CMPG 325 — Computer Networks  
-**Organisation:** Molema Citrus Estates (Rustenburg)  
-**Project Status:** Phase 1 Design ✅ Complete | Phase 2 Implementation & Testing ✅ Complete
+> **Computer Networks | CLI-037 | Project CMPG325-2026-037**
 
-## Project Overview
+This repository documents the design and Cisco Packet Tracer implementation of a segmented network for Molema Citrus Estates in Rustenburg. It includes the Phase 1 design material and the Phase 2 implementation, device configuration records, testing evidence and final technical report.
 
-This repository contains the network design, Cisco Packet Tracer implementation, verified device configuration records, testing evidence, and Milestone 2 technical report for the Molema Citrus Estates project.
+## Project status
 
-## Phase 1 — Network Design ✅
+- **Phase 1 — Network design:** design material included
+- **Phase 2 — Implementation and testing:** implementation and evidence included
+- **Internet reachability:** not claimed; the submitted Packet Tracer topology does not include a simulated ISP/Cloud path
 
-The Phase 1 material is retained at the repository root and includes the client requirements, Phase 1 design document, IP addressing plan, physical topology material, logical topology/VLAN design, and design justification.
+## Network overview
 
-## Phase 2 — Implementation & Testing ✅
+The implementation uses a multilayer core switch for inter-VLAN routing, 802.1Q trunks, DHCP pools for end-user VLANs, and extended ACLs to isolate Guest and Voice traffic from protected internal networks.
 
-The implemented network includes:
+### Logical VLAN and addressing plan
+
+| VLAN | Name | Network / Prefix | Subnet mask | Default gateway |
+|---:|---|---|---|---|
+| 10 | Management | 192.168.26.112/29 | 255.255.255.248 | 192.168.26.113 |
+| 20 | Administration | 192.168.26.32/27 | 255.255.255.224 | 192.168.26.33 |
+| 30 | Packhouse | 192.168.26.0/27 | 255.255.255.224 | 192.168.26.1 |
+| 40 | Voice | 192.168.26.64/27 | 255.255.255.224 | 192.168.26.65 |
+| 50 | Guest | 192.168.26.96/28 | 255.255.255.240 | 192.168.26.97 |
+
+The core-to-router point-to-point link uses 192.168.26.120/30, with 192.168.26.122 on the core switch and 192.168.26.121 on Router0.
+
+## Key features
 
 - Layer 3 inter-VLAN routing on the core multilayer switch
-- VLAN 10 — Management — gateway `192.168.26.113/29`
-- VLAN 20 — Administration — gateway `192.168.26.33/27`
-- VLAN 30 — Packhouse — gateway `192.168.26.1/27`
-- VLAN 40 — Voice — gateway `192.168.26.65/27`
-- VLAN 50 — Guest — gateway `192.168.26.97/28`
-- 802.1Q trunking
-- IOS DHCP pools for Administration, Packhouse, Voice and Guest networks
-- Router-to-core Layer 3 connectivity
-- Extended ACL isolation for Guest VLAN 50 and Voice VLAN 40
-- Connectivity, DHCP, trunk, SVI and ACL verification
+- VLAN segmentation for Management, Administration, Packhouse, Voice and Guest
+- 802.1Q trunk links between network devices
+- DHCP for Administration, Packhouse, Voice and Guest VLANs
+- Extended ACLs named `GUEST_ISOLATION` and `VOICE_ISOLATION`
+- Verification of VLAN/SVI status, trunking, DHCP assignment, connectivity, ACL blocking and ACL match counters
 
-## Assigned Networking Feature — ACLs
+## Network design material
 
-The assigned networking feature was implemented using extended access control lists on the Layer 3 core switch.
+- [Client requirements](Client_Requirements.md)
+- [Phase 1 design document](Phase1_Design_Document.pdf)
+- [IP addressing plan](IP_Addressing_Plan.xlsx)
+- [Logical VLAN design image](Molema%20Citrus%20Estates%20(Rustenburg)%20%E2%80%94%20Logical%20Topology%20_%20VLAN%20Design.jpg)
+- [Physical topology image](MOLEMA%20CITRUS%20(RUSTENBURG)%20%E2%80%93%20PHASE%201%20physical%20topology%20.drawio%20(1).png)
 
-`GUEST_ISOLATION` restricts Guest VLAN 50 from reaching protected internal VLANs. `VOICE_ISOLATION` restricts Voice VLAN 40 from reaching protected internal network segments. DHCP traffic is explicitly permitted so end devices can obtain addresses before isolation rules are applied. Verification evidence includes intentionally blocked connectivity tests and ACL match counters.
+## Phase 2 deliverables
 
-## Repository Navigation
+| Deliverable | Location |
+|---|---|
+| Phase 2 overview and instructions | [Phase2/README.md](Phase2/README.md) |
+| Final implementation report | [Milestone 2 PDF report](Phase2/CMPG325_Milestone2_Molema_Citrus_Estates_FINAL.pdf) |
+| Cisco Packet Tracer project | [Molema_Citrus_Phase2.pkt](Phase2/PacketTracer/Molema_Citrus_Phase2.pkt) |
+| Device configuration records | [Phase2/Configs](Phase2/Configs/) |
+| Testing screenshots | [Phase2/Screenshots](Phase2/Screenshots/) |
 
-```text
-Repository root
-├── Client_Requirements.md
-├── Phase1_Design_Document.pdf
-├── IP_Addressing_Plan.xlsx
-├── Phase 1 topology/design files
-└── Phase2/
-    ├── README.md
-    ├── CMPG325_Milestone2_Molema_Citrus_Estates_FINAL.pdf
-    ├── PacketTracer/
-    │   └── Molema_Citrus_Phase2.pkt
-    ├── Configs/
-    │   ├── CoreSwitch_Config.txt
-    │   ├── Router0_Config.txt
-    │   ├── AdminSwitch_Config.txt
-    │   └── PackhouseSwitch_Config.txt
-    └── Screenshots/
-        └── Implementation and testing evidence
-```
+## Reproducing the implementation and tests
 
-## Testing Evidence
+1. Install and open Cisco Packet Tracer.
+2. Open `Phase2/PacketTracer/Molema_Citrus_Phase2.pkt`.
+3. Inspect the core switch and router configurations alongside the text records in `Phase2/Configs/`.
+4. Verify VLAN/SVI status, trunk operation and DHCP address assignment.
+5. Run the permitted connectivity tests and the Guest/Voice isolation tests described in the report.
+6. Compare the results with the evidence in `Phase2/Screenshots/`, including ACL match-counter verification.
 
-The Phase 2 evidence set documents VLAN/SVI status, trunk operation, DHCP address assignment, gateway and router connectivity, Administration-to-Packhouse connectivity, Guest VLAN isolation, Voice VLAN isolation, and ACL match-counter verification.
+A failed ping is an expected result when the ACL is correctly blocking prohibited traffic. Evaluate those tests against their expected outcomes rather than treating every failed ping as a network fault.
 
-Both successful connectivity and intentionally blocked traffic are retained because a failed ping is the expected result when an ACL correctly blocks prohibited traffic.
+## Security and scope notes
 
-## Key Submission Files
+The submitted topology demonstrates the internal network and its connection to Router0. It does not simulate an ISP/Cloud path, so public Internet connectivity has not been established by the submitted evidence. The text configuration records should be read alongside the Packet Tracer project and report; the live project is the reference for checking the final active configuration.
 
-- **Packet Tracer:** `Phase2/PacketTracer/Molema_Citrus_Phase2.pkt`
-- **Final report:** `Phase2/CMPG325_Milestone2_Molema_Citrus_Estates_FINAL.pdf`
-- **Device configurations:** `Phase2/Configs/`
-- **Testing evidence:** `Phase2/Screenshots/`
+## Technologies and concepts
 
-## Scope Note
-
-The implemented Packet Tracer topology verifies the internal network and the Router0 edge connection. No simulated ISP/Cloud path is included in the submitted topology, so public Internet reachability is not presented as a successful test. Internal routing, segmentation, DHCP and ACL behaviour are documented and verified separately.
+**Cisco Packet Tracer · Cisco IOS configuration · IPv4 subnetting · VLANs · 802.1Q trunking · Layer 3 switching · DHCP · Static routing · Extended ACLs · Network verification**
 
 ---
 
-**CMPG 325 — Computer Networks**  
-**Molema Citrus Estates (Rustenburg) — CLI-037**
+**Module:** CMPG 325 — Computer Networks  
+**Client:** Molema Citrus Estates (Rustenburg)  
+**Client ID:** CLI-037
