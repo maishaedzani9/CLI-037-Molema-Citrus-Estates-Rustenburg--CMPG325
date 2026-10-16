@@ -59,3 +59,11 @@ Both successful and intentionally blocked traffic tests are retained. A failed p
 The submitted topology does not include a simulated ISP/Cloud path. Public Internet reachability is therefore not claimed as a successful test. The documented verification focuses on the implemented internal network, core-to-router connectivity, segmentation, DHCP and ACL behaviour.
 
 The Packet Tracer project, configuration records, screenshots and report should be reviewed together. If a configuration record differs from the active running configuration, verify the live project and update the record from the verified output before treating it as final.
+
+
+## Final evaluation additions
+
+- [Corrections log](Corrections_Log.md) records the Management wildcard-mask issue and endpoint-label checks.
+- [Video demonstration instructions](Video_Demonstration/README.md) is the location for the recorded 15–20 minute inset demonstration link.
+
+**Outstanding before final submission:** the video file/link is not yet present; the separate final-report draft must be checked for screenshot placeholders and uploaded if required; and the ACL wildcard must be verified inside the saved Packet Tracer project itself.
