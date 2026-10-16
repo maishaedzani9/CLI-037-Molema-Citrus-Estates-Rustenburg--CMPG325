@@ -77,3 +77,22 @@ The submitted topology demonstrates the internal network and its connection to R
 **Module:** CMPG 325 — Computer Networks  
 **Client:** Molema Citrus Estates (Rustenburg)  
 **Client ID:** CLI-037
+
+
+## Final submission checklist — 16 October 2026
+
+| Required deliverable | Repository location | Current status |
+|---|---|---|
+| Packet Tracer project (.pkt) | [Phase2/PacketTracer/Molema_Citrus_Phase2.pkt](Phase2/PacketTracer/Molema_Citrus_Phase2.pkt) | Present; saved ACL wildcard still requires direct verification inside Packet Tracer |
+| GitHub portfolio of evidence | [Phase2/](Phase2/) — Configs and Screenshots | Evidence files present |
+| Technical report | [Existing Milestone 2 PDF](Phase2/CMPG325_Milestone2_Molema_Citrus_Estates_FINAL.pdf) | Present; final report draft still needs placeholder/caption review and must be uploaded if it replaces this PDF |
+| 15–20 minute inset video | [Video submission instructions](Phase2/Video_Demonstration/README.md) | **MISSING: add the actual video file or a working share link** |
+| Additional correction records | [Corrections log](Phase2/Corrections_Log.md) | Present |
+
+### Final verification notes
+
+- The Management subnet is `192.168.26.112/29`, gateway `192.168.26.113`; the correct wildcard mask is `0.0.0.7`.
+- The text configuration record lists `0.0.0.7` in both ACLs for the Management destination, but the saved `.pkt` must be checked directly before claiming that it is verified.
+- A screenshot showing `192.168.26.100/28` with gateway `192.168.26.97` is Guest VLAN 50 evidence, not a Management endpoint.
+- The submitted topology does not include a simulated ISP/Cloud path. Public Internet reachability is not claimed.
+- Do not submit until the video link/file and the final technical report have been checked.
